@@ -1,5 +1,5 @@
-import React from "react";
-import { gql, useQuery, useLazyQuery } from '@apollo/client';
+import React, { useState } from "react";
+import { gql, useQuery, useLazyQuery, useMutation } from '@apollo/client';
 import './style.css'
 
 const listTrip = gql`
@@ -10,12 +10,39 @@ query MyQuery {
         harga
         id
         judul
+        path
+    }
+}
+`
+
+const InsertKeranjang = gql`
+mutation MyMutation($object: keranjang_insert_input!) {
+    insert_keranjang_one(object: $object) {
+        id
     }
 }
 `
 
 function DetailBali() {
+    const [insertKeranjang, { loading: loadingInsert }] = useMutation(InsertKeranjang, { refetchQueries: [listTrip] })
+    const [keranjang, setKeranjang] = useState([])
+
     const listTripQuery = useQuery(listTrip)
+
+    const masukKeranjang = (value) => {
+        insertKeranjang({
+            variables: {
+                object: {
+                    judul: value.judul,
+                    harga: value.harga,
+                    path: value.path,
+                    deskripsi: value.deskripsi,
+                    gambar: value.gambar
+                }
+            }
+        })
+        console.log(value)
+    }
 
     return (
         <>
@@ -34,7 +61,7 @@ function DetailBali() {
                                         <h5>{list.harga}</h5>
                                         <div>
                                             <button>Order</button>
-                                            <button>Cart</button>
+                                            <button onClick={() => masukKeranjang(list)}>Cart</button>
                                         </div>
                                     </div>
                                 </div>

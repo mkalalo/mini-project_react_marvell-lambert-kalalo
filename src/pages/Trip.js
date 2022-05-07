@@ -4,6 +4,8 @@ import './style.css'
 
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
 
+import Button from '../component/Button'
+
 const listTrip = gql`
 query MyQuery {
     trip {
@@ -29,24 +31,25 @@ function Trip() {
                         {listTripQuery.data?.trip.map((list) => (
                             <div className="row col-4 d-inline-block">
                                 <div>
-                                    <Link to={list.path}>
-                                        <div className="cards">
-                                            <img src={list.gambar} />
-                                            <div className="deskripsi">
-                                                <div className="detail">
-                                                    <div className="text">
-                                                        <h3>{list.judul}</h3>
-                                                        <h5>Rp. {list.harga}</h5>
+                                    <div className="cards">
+                                        <Link to={list.path}><img src={list.gambar} /></Link>
+                                        <div className="deskripsi">
+                                            <div className="detail">
+                                                <div className="text">
+                                                    <h3>{list.judul}</h3>
+                                                    <h5>Rp. {list.harga}</h5>
+                                                </div>
+                                                <div className="button row">
+                                                    {/* <button className="col">Cart</button> */}
+                                                    <div id="buttonn" className="col">
+                                                        <Button listKeranjang={list} listTrip={listTrip} />
                                                     </div>
-                                                    <div className="button row">
-                                                        <button className="col">Cart</button>
-                                                        <button className="col">Order</button>
-                                                    </div>
+                                                    <button className="col">Order</button>
                                                 </div>
                                             </div>
-                                            {/* <p>{list.deskripsi}</p> */}
                                         </div>
-                                    </Link>
+                                        {/* <p>{list.deskripsi}</p> */}
+                                    </div>
                                 </div>
                             </div>
                         ))}

@@ -91,7 +91,7 @@ function Dashboard() {
     return (
         <>
             <div id='dashboard'>
-                {/* <SidebarDashboard /> */}
+                <SidebarDashboard />
                 <div id='content' className='row container-fluid'>
                     <form onSubmit={onSubmitTrip} className='form col justify-content-center mx-3'>
                         <div className='mx-3 my-3'>

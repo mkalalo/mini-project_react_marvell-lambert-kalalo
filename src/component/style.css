@@ -20,6 +20,19 @@
     margin-right: 20px;
 }
 
+.navbar svg {
+    margin-right: 20px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.navbar svg:hover {
+    color: rgb(146, 220, 255);
+    transition: 0.3s;
+}
+
 .navbar div ul a {
     text-decoration: none;
     list-style-type: none;

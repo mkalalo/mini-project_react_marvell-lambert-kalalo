@@ -2,6 +2,8 @@ import React from "react";
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
 import './style.css'
 
+import Button from '../../component/Button'
+
 const listTrip = gql`
 query MyQuery {
     trip {
@@ -10,6 +12,7 @@ query MyQuery {
         harga
         id
         judul
+        path
     }
 }
 `
@@ -34,7 +37,8 @@ function DetailBandung() {
                                         <h5>{list.harga}</h5>
                                         <div>
                                             <button>Order</button>
-                                            <button>Cart</button>
+                                            {/* <button>Cart</button> */}
+                                            <Button listKeranjang={list} listTrip={listTrip}/>
                                         </div>
                                     </div>
                                 </div>
