@@ -1,0 +1,28 @@
+.detailPages {
+    margin-top: 80px;
+}
+
+.detailPages p::after {
+    content: '';
+    display: block;
+    width: 20%;
+    height: 2px;
+    background-color: rgb(0, 0, 0);
+    /* margin: 0 auto; */
+    margin-top: 20px;
+}
+
+.detailPages button {
+    border: none;
+    width: 100px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.detailPages button:nth-child(1) {
+    background-color: rgb(146, 220, 255);
+    color: white;
+}
