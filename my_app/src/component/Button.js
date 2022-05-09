@@ -23,7 +23,8 @@ export default function Button({listKeranjang, listTrip}) {
                     harga: value.harga,
                     path: value.path,
                     deskripsi: value.deskripsi,
-                    gambar: value.gambar
+                    gambar: value.gambar,
+                    jumlah: 1
                 }
             }
         })

@@ -1,4 +1,4 @@
-import { gql, useQuery, useLazyQuery, useMutation } from '@apollo/client'
+import { gql, useQuery, useMutation } from '@apollo/client'
 import React, { useState } from 'react'
 import SidebarDashboard from '../component/Sidebar-Dashboard'
 import './style.css'

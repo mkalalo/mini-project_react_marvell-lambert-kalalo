@@ -5,9 +5,11 @@ import './style.css'
 import { ic_shopping_cart } from 'react-icons-kit/md/ic_shopping_cart'
 import { Icon } from 'react-icons-kit'
 
-function Navbar() {
+function Navbar(isvisible) {
     const [navbarScrol, setNavbarScrol] = useState(false)
     const [buttonDaftar, setButtonDaftar] = useState(false)
+
+    
 
     const changeBackground = () => {
         if (window.scrollY >= 1) {

@@ -208,6 +208,13 @@
     color: rgba(0, 0, 0, 0.5);
 }
 
+.daftar #button-submit {
+    width: 50%;
+    margin: 20px auto;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: bold;
+}
+
 /* Trip */
 
 :root {
@@ -438,7 +445,7 @@
     padding: 10px;
 }
 
-#keranjang #content #box #card div:nth-child(1) #checkbox  {
+#keranjang #content #box #card div:nth-child(1) .checkboxx  {
     background-color: aqua;
     margin-right: 20px;
 }

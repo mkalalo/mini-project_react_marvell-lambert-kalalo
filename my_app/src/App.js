@@ -19,6 +19,7 @@ import DetailBandung from './pages/detail-trip/Detail-Bandung';
 import DetailJakarta from './pages/detail-trip/Detail-Jakarta';
 import Keranjang from './pages/Keranjang';
 import PrivateRoute from './PrivateRoute';
+import PrivateRouteDashboard from './PrivateRouteDashboard';
 
 function App() {
   return (
@@ -36,13 +37,15 @@ function App() {
                 <Route exact path='/about' element={<About />} />
                 <Route exact path='/contact' element={<Contact />} />
                 <Route exact path='/keranjang' element={<Keranjang />} />
-                <Route exact path='/dashboard' element={<Dashboard />} />
                 <>
                   <Route exact path='/trip/bali' element={<DetailBali />} />
                   <Route exact path='/trip/manado' element={<DetailManado />} />
                   <Route exact path='/trip/bandung' element={<DetailBandung />} />
                   <Route exact path='/trip/jakarta' element={<DetailJakarta />} />
                 </>
+              </Route>
+              <Route element={<PrivateRouteDashboard />}>
+                <Route exact path='/dashboard' element={<Dashboard />} />
               </Route>
             </Routes>
             <Footer />

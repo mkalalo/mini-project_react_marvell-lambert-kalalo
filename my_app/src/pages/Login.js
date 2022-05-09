@@ -40,23 +40,27 @@ function Login() {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [errorMsg, setErrorMsg] = useState('')
+    const [errorMsgPW, setErrorMsgPW] = useState('')
+
     const [getAuth, { data, loading, error }] = useLazyQuery(GetAuth)
     const [GetAuthDashboard, queryTodo] = useLazyQuery(GetDashboard)
     let Navigate = useNavigate()
     const cookies = new Cookies()
 
     useEffect(() => {
+        setErrorMsg(errorMsg)
         if (data?.auth.length === 1) {
             console.log(data?.auth.length);
-                cookies.set('auth', true, { path: '/' })
-                return Navigate('/home')
-        } else if (queryTodo.data?.auth.length === 1) {
             cookies.set('auth', true, { path: '/' })
-                return Navigate('/dashboard')
+            return Navigate('/home')
+        } else if (queryTodo.data?.auth.length === 1) {
+            cookies.set('auth1', true, { path: '/' })
+            return Navigate('/dashboard')
         }
     }, [data])
 
-    const loginAuth = () => {
+    const loginAuth = async () => {
         GetAuthDashboard({
             variables: {
                 _eq: username,
@@ -71,10 +75,19 @@ function Login() {
                 _eq2: 'user'
             },
         })
+
+        if (await data?.auth.username != username && data?.auth.username != password) {
+            setErrorMsg('Username tidak sesuai!')
+            setErrorMsgPW('Password Salah!')
+            console.log(errorMsg)
+        }
+
     }
 
     if (loading) {
-        return <h1>loading...</h1>
+        return (
+            <h1>loading...</h1>
+        )
     }
 
     const rememberMe = () => {
@@ -101,10 +114,12 @@ function Login() {
                     <div className='boxx'>
                         <h1>Login</h1>
                         <input placeholder='Username' type='text' onChange={handleChangeUsername} />
+                        <div>{errorMsg}</div>
                         <div>
                             <input placeholder='Password' type={visibility ? 'text' : 'password'} onChange={handleChangePassword} />
                             <span onClick={showPassword}><Icon icon={iconVisibility ? eye : eyeOff} /></span>
                         </div>
+                        <div>{errorMsgPW}</div>
                         <label className='form-controll'>
                             <input onClick={rememberMe} checked={checked ? 'checked' : ''} type='checkbox' />
                             Remember Me
