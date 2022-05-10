@@ -1,9 +1,11 @@
 import React from 'react'
+import Navbar from '../component/Navbar'
 
 function Home() {
 
     return (
         <>
+        <Navbar />
             <div id='home'>
                 <div className='hero'>
                     <div className='hero-text'>

@@ -1,5 +1,6 @@
 import React from "react";
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
+import { useParams } from "react-router-dom";
 import './style.css'
 
 import Button from '../../component/Button'
@@ -19,13 +20,12 @@ query MyQuery {
 
 function DetailBandung() {
     const listTripQuery = useQuery(listTrip)
+    let { judul } = useParams()
 
     return (
         <>
             <div className="detailPages">
-                {listTripQuery.data?.trip.map((list) => {
-                    if (list.judul === 'Bandung') {
-                        return (
+                {listTripQuery.data?.trip.filter(list => list.judul === judul).map((list) => (
                             <div className="container-fluid row">
                                 <div className="col">
                                     <img style={{ height: '400px', width: '100%' }} src={list.gambar} />
@@ -43,9 +43,7 @@ function DetailBandung() {
                                     </div>
                                 </div>
                             </div>
-                        )
-                    }
-                })}
+                ))}
             </div>
         </>
     )

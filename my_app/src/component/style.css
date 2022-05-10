@@ -1,4 +1,4 @@
-.navbar div, .navbar.active div {
+.navbar #nav, .navbar.active #nav {
     padding: 16px 0px;
     position: fixed;
     width: 100%;
@@ -9,14 +9,14 @@
     transition: 1s;
 }
 
-.navbar div ul {
+.navbar #nav ul {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     margin: 0 16px;
 }
 
-.navbar div ul li {
+.navbar #nav ul li {
     margin-right: 20px;
 }
 
@@ -26,6 +26,7 @@
     height: 25px;
     cursor: pointer;
     transition: 0.1s;
+    color: black;
 }
 
 .navbar svg:hover {
@@ -33,7 +34,7 @@
     transition: 0.3s;
 }
 
-.navbar div ul a {
+.navbar #nav ul a {
     text-decoration: none;
     list-style-type: none;
     font-weight: bold;
@@ -43,12 +44,12 @@
     color: black;
 }
 
-.navbar div ul a:hover {
+.navbar #nav ul a:hover {
     color: rgb(146, 220, 255);
     transition: 0.3s;
 }
 
-.navbar div ul button {
+.navbar #nav ul button {
     border-radius: 10px;
     background-color: rgb(146, 220, 255);
     color: white;
@@ -58,7 +59,7 @@
     letter-spacing: 2px;
 }
 
-.navbar.active div {
+.navbar.active #nav {
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.1);
     padding: 16px;
@@ -71,6 +72,72 @@
     backdrop-filter: blur(10px);
     transition: 0.5s;
 }
+
+#navbarr #profile {
+    margin-right: 15px;
+    background-color: rgb(146, 220, 255);
+    padding: 5px 10px;
+    border-radius: 20px;
+    position: relative;
+}
+
+#navbarr #profile svg {
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+}
+
+#navbarr #profile span {
+    margin-left: -15px;
+    color: black;
+    font-weight: 600;
+}
+
+#navbarr #profile #box {
+    display: none;
+}
+
+#navbarr #profile:hover #box {
+    background-color: rgb(146, 220, 255);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    left: 0;
+    top: 0;
+    border-radius: 20px 20px 10px 10px;
+}
+
+#navbarr #profile span #box svg {
+    margin-right: 0;
+    padding: 0;
+    background-color: black;
+    height: 40px;
+    width: 40px;
+}
+
+#navbarr #profile span #box p:nth-child(1) {
+    font-weight: 600;
+    margin: auto;
+    text-align: center;
+}
+
+#navbarr #profile span #box p:nth-child(2) {
+    font-weight: 300;
+    text-align: center;
+}
+
+#navbarr #profile span #box button {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px 10px;
+    background-color: white;
+    color: rgb(146, 220, 255);
+}
+
+#navbarr #profile #box
+
 
 /* sidebar-dashboard */
 

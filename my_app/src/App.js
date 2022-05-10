@@ -13,13 +13,25 @@ import Footer from './component/Footer';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 
-import DetailBali from './pages/detail-trip/Detail-Bali';
-import DetailManado from './pages/detail-trip/Detail-Manado';
-import DetailBandung from './pages/detail-trip/Detail-Bandung';
-import DetailJakarta from './pages/detail-trip/Detail-Jakarta';
+import DetailTrip from './pages/detail-trip/DetailTrip';
 import Keranjang from './pages/Keranjang';
 import PrivateRoute from './PrivateRoute';
 import PrivateRouteDashboard from './PrivateRouteDashboard';
+
+import gql from 'graphql-tag';
+
+const listTrip = gql`
+query MyQuery {
+    trip {
+        deskripsi
+        gambar
+        harga
+        id
+        judul
+        path
+    }
+}
+`
 
 function App() {
   return (
@@ -38,16 +50,14 @@ function App() {
                 <Route exact path='/contact' element={<Contact />} />
                 <Route exact path='/keranjang' element={<Keranjang />} />
                 <>
-                  <Route exact path='/trip/bali' element={<DetailBali />} />
-                  <Route exact path='/trip/manado' element={<DetailManado />} />
-                  <Route exact path='/trip/bandung' element={<DetailBandung />} />
-                  <Route exact path='/trip/jakarta' element={<DetailJakarta />} />
+                  <Route exact path='/trip/:judul' element={<DetailTrip /> } />
                 </>
               </Route>
               <Route element={<PrivateRouteDashboard />}>
                 <Route exact path='/dashboard' element={<Dashboard />} />
               </Route>
             </Routes>
+
             <Footer />
           </div>
         </div>

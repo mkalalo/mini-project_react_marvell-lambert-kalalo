@@ -32,7 +32,7 @@ function Trip() {
                             <div className="row col-4 d-inline-block">
                                 <div>
                                     <div className="cards">
-                                        <Link to={list.path}><img src={list.gambar} /></Link>
+                                        <Link to={`/trip/${list.judul}`}><img src={list.gambar} /></Link>
                                         <div className="deskripsi">
                                             <div className="detail">
                                                 <div className="text">
