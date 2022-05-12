@@ -1,8 +1,20 @@
+#nav {
+    display: flex;
+}
+
+#nav #logo {
+    background-color: black;
+    color: white;
+    padding: 0px 10px;
+    border-radius: 100%;
+    font-size: 25px;
+    margin-left: 20px;
+}
+
 .navbar #nav, .navbar.active #nav {
     padding: 16px 0px;
     position: fixed;
     width: 100%;
-    justify-content: center;
     align-items: center;
     z-index: 1;
     top: 0;
@@ -10,6 +22,7 @@
 }
 
 .navbar #nav ul {
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -18,6 +31,8 @@
 
 .navbar #nav ul li {
     margin-right: 20px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .navbar svg {
@@ -179,6 +194,40 @@
     padding-top: 30px;
     padding-bottom: 5px;
     box-shadow: 0px 0px 20px rgb(0, 0, 0, .07);
+}
+
+#footer #logo span {
+    font-size: 30px;
+}
+
+#footer #logo span {
+    background-color: black;
+    color: white;
+    padding: 0px 5px;
+    border-radius: 50%;
+    letter-spacing: 0px;
+    margin-right: 3px;
+}
+
+#footer #logo h4 {
+    letter-spacing: 3px;
+}
+
+#footer #box #list {
+    margin-top: 10px;
+}
+
+#footer #box span a {
+    text-decoration: none;
+    color: black;
+    letter-spacing: 1px;
+}
+
+#footer #box span svg {
+    height: 30px;
+    width: 30px;
+    margin-bottom: 10px;
+    color: black;
 }
 
 #footer #copyright {

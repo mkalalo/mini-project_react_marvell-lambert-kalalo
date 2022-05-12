@@ -6,6 +6,7 @@ import './style.css'
 import { Icon } from 'react-icons-kit'
 import { eye } from 'react-icons-kit/feather/eye'
 import { eyeOff } from 'react-icons-kit/feather/eyeOff'
+import Navbar from '../component/Navbar'
 
 const listAuth = gql`
 query MyQuery {
@@ -82,19 +83,20 @@ function Signup() {
 
     return (
         <>
+            <Navbar />
             <div className='container-daftar'>
                 <div className='daftar'>
                     {/* <div className='boxx'> */}
-                        <form onSubmit={onSubmitAuth} className='boxx'>
-                            <h1>Sign Up</h1>
-                            <input name='nama' value={data.nama} onChange={onChangeAuth} placeholder='Name' type='text' />
-                            <input name='username' value={data.username} onChange={onChangeAuth} placeholder='Username' type='text' />
-                            <div>
-                                <input name='password' value={data.password} onChange={onChangeAuth} placeholder='Password' type={visibility ? 'text' : 'password'} />
-                                <span onClick={showPassword}><Icon icon={iconVisibility ? eye : eyeOff} /></span>
-                            </div>
-                            <input id='button-submit' type='submit' value='Submit' />
-                        </form>
+                    <form onSubmit={onSubmitAuth} className='boxx'>
+                        <h1>Sign Up</h1>
+                        <input name='nama' value={data.nama} onChange={onChangeAuth} placeholder='Name' type='text' />
+                        <input name='username' value={data.username} onChange={onChangeAuth} placeholder='Username' type='text' />
+                        <div>
+                            <input name='password' value={data.password} onChange={onChangeAuth} placeholder='Password' type={visibility ? 'text' : 'password'} />
+                            <span onClick={showPassword}><Icon icon={iconVisibility ? eye : eyeOff} /></span>
+                        </div>
+                        <input id='button-submit' type='submit' value='Submit' />
+                    </form>
                     {/* </div> */}
                 </div>
             </div>

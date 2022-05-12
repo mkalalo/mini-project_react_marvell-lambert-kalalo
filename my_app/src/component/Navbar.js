@@ -37,7 +37,6 @@ function Navbar() {
 
     useEffect(() => {
         changeBackground()
-        // adding the event when scroll change background
         window.addEventListener("scroll", changeBackground)
     })
 
@@ -60,13 +59,14 @@ function Navbar() {
         <>
             <div id="navbarr" className={navbarScrol ? 'navbar active' : 'navbar'}>
                 <div id="nav">
+                    {/* <div id='logo'>w</div> */}
                     <ul>
                         <Link to='/home'><li>Home</li></Link>
                         <Link to='/trip'><li>Trip</li></Link>
                         <Link to='/about'><li>About</li></Link>
                         <Link to='/contact'><li>Contact</li></Link>
                         <Link to='/keranjang'><Icon icon={ic_shopping_cart} /></Link>
-                        { isLoggedin ? (                       
+                        {isLoggedin ? (
                             <span id="profile">
                                 <Icon icon={user} />
                                 {getAuthQuery.data?.auth.map((auth) => {
@@ -89,8 +89,8 @@ function Navbar() {
                             </span>)
                             :
                             (
-                            <Link to={buttonDaftar ? '/' : '/signup'}><button onClick={handleClick}>{buttonDaftar ? 'Login' : 'Daftar'}</button></Link>
-                        )
+                                <Link to={buttonDaftar ? '/' : '/signup'}><button onClick={handleClick}>{buttonDaftar ? 'Login' : 'Daftar'}</button></Link>
+                            )
                         }
                     </ul>
                 </div>
