@@ -327,6 +327,7 @@
 /* home */
 
 #home {
+    margin-top: -55px;
     font-family: 'Poppins';
     position: relative;
     height: 100vh;

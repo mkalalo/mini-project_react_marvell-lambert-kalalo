@@ -6,8 +6,9 @@ import TripHero from '../img/src/tripHero.jpg'
 
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
 
-import Button from '../component/Button'
+import Button from '../component/ButtonCart'
 import Navbar from "../component/Navbar";
+import Footer from "../component/Footer";
 
 const listTrip = gql`
 query MyQuery {
@@ -65,6 +66,7 @@ function Trip() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     )
 }

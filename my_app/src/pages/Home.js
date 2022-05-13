@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../component/Footer'
 import Navbar from '../component/Navbar'
 
 function Home() {
@@ -18,6 +19,7 @@ function Home() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     )
 }

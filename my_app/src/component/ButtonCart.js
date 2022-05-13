@@ -26,7 +26,6 @@ export default function Button({ listKeranjang, listTrip }) {
 
     const masukKeranjang = (value) => {
         const user = authQuery.data?.auth.find(v => v.username === localStorage.getItem('username'))
-        console.log(user.username)
         insertKeranjang({
             variables: {
                 object: {

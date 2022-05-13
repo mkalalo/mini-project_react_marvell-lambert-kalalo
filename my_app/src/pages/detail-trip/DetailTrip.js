@@ -3,8 +3,10 @@ import { gql, useQuery, useLazyQuery } from '@apollo/client';
 import { useParams } from "react-router-dom";
 import './style.css'
 
-import Button from '../../component/Button'
+import Button from '../../component/ButtonCart'
+import ButtonOrder from '../../component/ButtonOrder'
 import Navbar from "../../component/Navbar";
+import Footer from "../../component/Footer";
 
 const listTrip = gql`
 query MyQuery {
@@ -19,7 +21,7 @@ query MyQuery {
 }
 `
 
-function DetailBandung() {
+function DetailTrip() {
     const listTripQuery = useQuery(listTrip)
     let { judul } = useParams()
 
@@ -38,8 +40,7 @@ function DetailBandung() {
                                 <p>{list.deskripsi}</p>
                                 <h5>{list.harga}</h5>
                                 <div>
-                                    <button>Order</button>
-                                    {/* <button>Cart</button> */}
+                                    <ButtonOrder listOrder={list} />
                                     <Button listKeranjang={list} listTrip={listTrip} />
                                 </div>
                             </div>
@@ -47,8 +48,9 @@ function DetailBandung() {
                     </div>
                 ))}
             </div>
+            <Footer />
         </>
     )
 }
 
-export default DetailBandung
+export default DetailTrip

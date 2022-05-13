@@ -58,8 +58,6 @@ function App() {
                 <Route exact path='/dashboard' element={<Dashboard />} />
               </Route>
             </Routes>
-
-            <Footer />
           </div>
         </div>
       </Router>
