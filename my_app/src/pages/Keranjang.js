@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { gql, useQuery, useLazyQuery, useMutation } from '@apollo/client'
 import Navbar from "../component/Navbar";
+import { user } from "react-icons-kit/typicons/user";
 
 const listTrip = gql`
 query MyQuery {
@@ -38,16 +39,25 @@ export default function Keranjang() {
     const listTripQuery = useQuery(listTrip)
     const authQuery = useQuery(authData)
     const [checked, setChecked] = useState(false)
+    const [keranjangScroll, setKeranjangScrol] = useState(false)
     const [insertCheckout, { loading: loadingInsert }] = useMutation(InsertCheckout, { refetchQueries: [listTrip] })
 
-    useEffect(() => {
-        localStorage.getItem('username')
-    }, [])
-
-    if (listTripQuery.loading) {
-        return <h1>loading...</h1>
+    const changeBackground = () => {
+        if (window.scrollY >= 1) {
+            setKeranjangScrol(true)
+        } else {
+            setKeranjangScrol(false)
+        }
     }
 
+    useEffect(() => {
+        changeBackground()
+        window.addEventListener("scroll", changeBackground)
+    }, [])
+
+    if (listTripQuery.loading || authQuery.loading) {
+        return <h1>loading...</h1>
+    }
 
     const checkedKeranjang = (value) => {
         // const item = listTripQuery.data?.keranjang.find(list => list.id === idx)
@@ -101,8 +111,8 @@ export default function Keranjang() {
                             }
                         })}
                     </div>
-                    <div id="detail">
-                        <div>
+                    <div id="detail" >
+                        <div className={keranjangScroll ? 'keranjang active' : 'keranjang'}>
                             <h1>detail</h1>
                         </div>
                     </div>

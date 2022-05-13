@@ -491,3 +491,82 @@
 #keranjang #content #box:nth-child(odd) #card div:nth-child(2) {
     background-color: rgb(0, 0, 0, .03);
 }
+
+#keranjang #detail .keranjang.active {
+    background-color: red;
+    color: red;
+    transform: translateY(-60px);
+    transition: 0.5s;
+}
+
+#keranjang #detail .keranjang {
+    transition: 0.5s;
+}
+
+/* order */
+
+#order #container {
+    box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.3);
+    border-radius: 10px 10px 10px 10px;
+    height: 500px;
+    
+}
+
+#order #container #box {
+    overflow-y: auto;
+    height: 500px;
+}
+
+#order #cards {
+    height: 150px;
+    width: 100%;
+}
+
+#order #order-summary {
+    font-size: 20px;
+    position: relative;
+    padding: 5px 15px;
+}
+
+#order #order-summary::after {
+    content: '';
+    background-color: rgb(0, 0, 0, 0.2);
+    width: 100%;
+    height: 2px;
+    display: block;
+    position: relative;
+    margin-top: 5px;
+}
+
+#order #cards #content {
+    position: relative;
+}
+
+#order #cards #content div:nth-child(2) h5 {
+    color: rgb(146, 220, 255);
+}
+
+#order #cards img {
+    width: 100%;
+    height: 150px;
+}
+
+#order #box-2 {
+    position: relative;
+    height: 500px;
+    border-radius: 0px 10px 10px 0px;
+
+}
+
+#order #box-2 #button {
+    margin-top: 160px;
+}
+
+#order #box-2 #button button {
+    background-color: rgb(146, 220, 255);
+    font-weight: 600;
+    border-radius: 10px;
+    color: white;
+    letter-spacing: 1px;
+
+}

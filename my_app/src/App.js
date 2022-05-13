@@ -18,21 +18,7 @@ import Keranjang from './pages/Keranjang';
 import PrivateRoute from './PrivateRoute';
 import PrivateRouteDashboard from './PrivateRouteDashboard';
 
-import gql from 'graphql-tag';
 import Order from './pages/Order';
-
-const listTrip = gql`
-query MyQuery {
-    trip {
-        deskripsi
-        gambar
-        harga
-        id
-        judul
-        path
-    }
-}
-`
 
 function App() {
   return (
@@ -49,9 +35,9 @@ function App() {
                 <Route exact path='/about' element={<About />} />
                 <Route exact path='/contact' element={<Contact />} />
                 <Route exact path='/keranjang' element={<Keranjang />} />
-                <Route exact path='/trip/order' element={<Order /> } />
+                <Route exact path='/trip/order' element={<Order />} />
                 <>
-                  <Route exact path='/trip/:judul' element={<DetailTrip /> } />
+                  <Route exact path='/trip/:judul' element={<DetailTrip />} />
                 </>
               </Route>
               <Route element={<PrivateRouteDashboard />}>

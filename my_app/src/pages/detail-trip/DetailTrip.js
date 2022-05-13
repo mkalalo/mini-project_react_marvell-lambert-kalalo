@@ -2,6 +2,7 @@ import React from "react";
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
 import { useParams } from "react-router-dom";
 import './style.css'
+import { Link } from 'react-router-dom'
 
 import Button from '../../component/ButtonCart'
 import ButtonOrder from '../../component/ButtonOrder'
@@ -40,7 +41,9 @@ function DetailTrip() {
                                 <p>{list.deskripsi}</p>
                                 <h5>{list.harga}</h5>
                                 <div>
-                                    <ButtonOrder listOrder={list} />
+                                    <Link to='/trip/order'>
+                                        <ButtonOrder listOrder={list} />
+                                    </Link>
                                     <Button listKeranjang={list} listTrip={listTrip} />
                                 </div>
                             </div>
