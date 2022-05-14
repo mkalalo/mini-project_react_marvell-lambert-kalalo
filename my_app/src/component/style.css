@@ -151,7 +151,14 @@
     color: rgb(146, 220, 255);
 }
 
-#navbarr #profile #box
+#navbarr #button {
+    display: flex;
+    flex-direction: column;
+}
+
+#navbarr #button button:nth-child(1) {
+    margin-bottom: 5px;
+}
 
 
 /* sidebar-dashboard */

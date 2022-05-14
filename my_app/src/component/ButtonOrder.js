@@ -1,5 +1,5 @@
 import React from "react";
-
+import useLocalStorage from 'react-use-localstorage';
 import { gql, useQuery, useLazyQuery, useMutation } from '@apollo/client';
 
 const InsertOrder = gql`
@@ -32,31 +32,18 @@ query MyQuery {
 }`
 
 export default function ButtonCart({ listOrder }) {
-
     const authQuery = useQuery(authData)
+    const [tripLS, setTripLS] = useLocalStorage('trip')
     const [insertOrder, { loading: loadingInsert }] = useMutation(InsertOrder, { refetchQueries: [listTrip] })
 
-    const masukOrder = (v) => {
-        const user = authQuery.data?.auth.find(v => v.username === localStorage.getItem('username'))
-        insertOrder({
-            variables: {
-                object: {
-                    judul: v.judul,
-                    harga: v.harga,
-                    path: v.path,
-                    deskripsi: v.deskripsi,
-                    gambar: v.gambar,
-                    jumlah: 1,
-                    auth_id: user.id
-                }
-            }
-        })
-        console.log(v)
+    const getTrip = (v) => {
+        setTripLS(listOrder.judul)
+        console.log('trip', listOrder.judul)
     }
 
     return (
         <div>
-            <button onClick={() => masukOrder(listOrder)}>Order</button>
+            <button onClick={() => getTrip(listOrder)}>Order</button>
         </div>
     )
 }

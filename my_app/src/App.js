@@ -19,6 +19,8 @@ import PrivateRoute from './PrivateRoute';
 import PrivateRouteDashboard from './PrivateRouteDashboard';
 
 import Order from './pages/Order';
+import InVoice from './pages/inVoice';
+import Transaksi from './pages/Transaksi';
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
                 <Route exact path='/contact' element={<Contact />} />
                 <Route exact path='/keranjang' element={<Keranjang />} />
                 <Route exact path='/trip/order' element={<Order />} />
+                <Route exact path='/transaksi' element={<Transaksi /> } />
+                <Route exact path='/transaksi/invoice' element={<InVoice />} />
                 <>
                   <Route exact path='/trip/:judul' element={<DetailTrip />} />
                 </>

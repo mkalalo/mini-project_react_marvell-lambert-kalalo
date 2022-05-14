@@ -47,6 +47,7 @@ function Navbar() {
     const logout = () => {
         localStorage.removeItem('username')
         localStorage.removeItem('password')
+        localStorage.removeItem('trip')
         cookies.remove('auth')
         window.location.reload();
     }
@@ -80,7 +81,12 @@ function Navbar() {
                                                         <p>{auth.name}</p>
                                                         <p>@{auth.username}</p>
                                                     </div>
-                                                    <button onClick={logout}>Logout</button>
+                                                    <div id="button">
+                                                        <Link to='/transaksi'>
+                                                            <button>Transaksi</button>
+                                                        </Link>
+                                                        <button onClick={logout}>Logout</button>
+                                                    </div>
                                                 </div>
                                             </span>
                                         )
