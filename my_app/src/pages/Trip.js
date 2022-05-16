@@ -42,7 +42,7 @@ function Trip() {
                             <div className="row col-4 d-inline-block">
                                 <div>
                                     <div className="cards">
-                                        <Link to={`/trip/${list.judul}`}><img src={list.gambar} /></Link>
+                                        <img src={list.gambar} />
                                         <div className="deskripsi">
                                             <div className="detail">
                                                 <div className="text">
@@ -50,11 +50,12 @@ function Trip() {
                                                     <h5>Rp. {list.harga}</h5>
                                                 </div>
                                                 <div className="button row">
-                                                    {/* <button className="col">Cart</button> */}
-                                                    <div id="buttonn" className="col">
+                                                    <div id="buttonn" className="col row">
                                                         <Button listKeranjang={list} listTrip={listTrip} />
                                                     </div>
-                                                    <button className="col">Order</button>
+                                                    <Link className="col row" to={`/trip/${list.judul}`}>
+                                                        <button className="col">More</button>
+                                                    </Link>
                                                 </div>
                                             </div>
                                         </div>

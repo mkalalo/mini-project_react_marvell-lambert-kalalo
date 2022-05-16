@@ -298,6 +298,10 @@
     transition: .1s;
 }
 
+#trip .cards:hover .text h5 {
+    color: rgb(146, 220, 255, 1);
+}
+
 #trip .cards .deskripsi .button {
     padding: 0 20px;
 }
@@ -324,9 +328,18 @@
     background-color: rgb(146, 220, 255, 1);
 }
 
+#trip .cards a {
+    text-decoration: none;
+}
+
+#trip .cards a button {
+    background-color: rgb(146, 220, 255, 1);
+    color: white;
+}
+
 /* home */
 
-#home {
+#home #hero-background {
     margin-top: -55px;
     font-family: 'Poppins';
     position: relative;
@@ -369,6 +382,55 @@
     background-color: rgb(146, 220, 255);
     font-weight: 600;
     letter-spacing: 1px;
+}
+
+#home #trip #judul,
+#home #about #judul {
+    letter-spacing: 4px;
+}
+
+#home #trip #content {
+    position: relative;
+}
+
+#home #trip button, #home #about button {
+    display: inline-block;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(146, 220, 255);
+    padding: 5px 20px;
+    color: white;
+}
+
+#home #garis {
+    height: 2px;
+    background-color: black;
+    margin: 0 auto;
+    opacity: 0.1;
+}
+
+/* about  */
+
+#about #logo span {
+    font-size: 35px;
+}
+
+#about #logo span {
+    background-color: black;
+    color: white;
+    padding: 0px 5px;
+    border-radius: 50%;
+    letter-spacing: 0px;
+    margin-right: 3px;
+}
+
+#about #logo h2 {
+    letter-spacing: 4px;
+}
+
+#about #about-card img {
+    width: 70%;
+    border-radius: 50%;
 }
 
 /* dashboard */
@@ -419,6 +481,10 @@
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     width: 90%;
+}
+
+#keranjang #header h1 {
+    margin-left: 30px;
 }
 
 #keranjang #container {
@@ -472,7 +538,7 @@
     padding: 10px;
 }
 
-#keranjang #content #box #card div:nth-child(1) .checkboxx  {
+#keranjang #content #box #card div:nth-child(1) .checkboxx {
     background-color: aqua;
     margin-right: 20px;
 }
@@ -509,7 +575,7 @@
     box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.3);
     border-radius: 10px 10px 10px 10px;
     height: 500px;
-    
+
 }
 
 #order #container #box {
@@ -617,4 +683,27 @@
     letter-spacing: 1px;
     border: none;
     padding: 5px 20px;
+}
+
+/* transaksi */
+
+#transaksi #header {
+    margin: 0;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+#transaksi #header h1 {
+    margin-left: 30px;
+}
+
+#transaksi div h5 {
+    color: rgb(146, 220, 255);
+}
+
+#transaksi #content #box:nth-child(odd) #card div:nth-child(1) {
+    background-color: rgb(0, 0, 0, .03);
 }

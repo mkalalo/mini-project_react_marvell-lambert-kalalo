@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../component/Navbar";
+import { Link } from "react-router-dom";
 
 import './style.css'
 
@@ -85,7 +86,9 @@ function Order() {
                                                     </div>
                                                 </div>
                                                 <div id="button" className="row px-5 d-flex align-items-start">
-                                                    <ButtonCheckout data={data} resetData={resetData} listCheckout={list} />
+                                                    <Link to='/transaksi/invoice'>
+                                                        <ButtonCheckout data={data} resetData={resetData} listCheckout={list} />
+                                                    </Link>
                                                 </div>
                                             </form>
                                         </div>

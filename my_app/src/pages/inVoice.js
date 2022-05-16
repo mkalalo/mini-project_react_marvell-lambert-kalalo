@@ -29,7 +29,7 @@ export default function InVoice() {
 
     return (
         <div id='invoice' className='col-8 container-fluid'>
-            {listOrderQuery.data?.order.map((list) => {
+            {listOrderQuery.data?.order.filter(list => list.judul === localStorage.getItem('trip')).map((list) => {
 
                 return (
                     <div>
