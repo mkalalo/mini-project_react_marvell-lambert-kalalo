@@ -12,10 +12,10 @@ query MyQuery {
     trip {
         deskripsi
         gambar
-        harga
         id
         judul
         path
+        harga1
     }
 }
 `
@@ -30,6 +30,10 @@ function Order() {
     const [data, setData] = useState(CheckoutForm)
 
     const listTripQuery = useQuery(listTrip)
+
+    if (listTripQuery.loading) {
+        return <h1>Loading...</h1>
+    }
 
     const onChangeCheckout = e => {
         const name = e.target.name
@@ -65,7 +69,7 @@ function Order() {
                                                     </div>
                                                     <div className="col ms-2 mt-1">
                                                         <h4>{list.judul}</h4>
-                                                        <h5>Rp. {list.harga}</h5>
+                                                        <h5>Rp. {list.harga1}</h5>
                                                     </div>
                                                 </div>
                                             </div>

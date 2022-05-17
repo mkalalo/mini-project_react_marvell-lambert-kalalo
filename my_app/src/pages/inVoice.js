@@ -13,7 +13,6 @@ query MyQuery {
         deskripsi
         email
         gambar
-        harga
         id
         judul
         jumlah
@@ -21,11 +20,20 @@ query MyQuery {
         nama_depan
         no_hp
         path
+        harga1
     }
 }`
 
 export default function InVoice() {
     const listOrderQuery = useQuery(listOrder)
+
+    if (listOrderQuery.loading) {
+        return <h1>Loading...</h1>
+    }
+
+    const kembali = () => {
+        localStorage.removeItem('trip')
+    }
 
     return (
         <div id='invoice' className='col-8 container-fluid'>
@@ -63,16 +71,16 @@ export default function InVoice() {
                                     </div>
                                     <div className='col-6 ms-2'>
                                         <h5>{list.judul}</h5>
-                                        <h6>Rp. {list.harga}</h6>
+                                        <h6>Rp. {list.harga1}</h6>
                                     </div>
                                 </div>
                                 <div id='garis'></div>
-                                <div className='text-end'>Rp. {list.harga}</div>
+                                <div className='text-end'>Rp. {list.harga1}</div>
                             </div>
                         </div>
                         <div id='button' className='text-center mt-5'>
                             <Link to='/trip'>
-                                <button>Kembali</button>
+                                <button onClick={kembali}>Kembali</button>
                             </Link>
                         </div>
                     </div>

@@ -27,6 +27,11 @@ function Navbar() {
 
     const cookies = new Cookies()
 
+    useEffect(() => {
+        changeBackground()
+        window.addEventListener("scroll", changeBackground)
+    })
+
     const changeBackground = () => {
         if (window.scrollY >= 1) {
             setNavbarScrol(true)
@@ -34,13 +39,6 @@ function Navbar() {
             setNavbarScrol(false)
         }
     }
-
-    useEffect(() => {
-        changeBackground()
-        window.addEventListener("scroll", changeBackground)
-    })
-
-    // const [isLoggedin, setIsLoggedin] = useState(false)
 
     const isLoggedin = cookies.get('auth')
 

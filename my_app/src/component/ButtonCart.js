@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import swal from 'sweetalert';
 
 import { gql, useQuery, useLazyQuery, useMutation } from '@apollo/client';
 
@@ -30,7 +31,7 @@ export default function Button({ listKeranjang, listTrip }) {
             variables: {
                 object: {
                     judul: value.judul,
-                    harga: value.harga,
+                    harga1: value.harga1,
                     path: value.path,
                     deskripsi: value.deskripsi,
                     gambar: value.gambar,
@@ -39,6 +40,11 @@ export default function Button({ listKeranjang, listTrip }) {
                 }
             }
         })
+        swal({
+            title: "Berhasil Masuk Keranjang",
+            text: "Berhasil Masuk Keranjang, " + listKeranjang.judul,
+            icon: "success",
+        });
         console.log(value)
     }
 

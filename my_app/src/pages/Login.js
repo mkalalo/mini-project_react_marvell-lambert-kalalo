@@ -14,6 +14,8 @@ import useLocalStorage from 'react-use-localstorage';
 
 import Navbar from '../component/Navbar';
 
+import LoadingSvg from '../component/LoadingSvg'
+
 const GetAuth = gql`
 query MyQuery($_eq: String, $_eq1: String, $_eq2: String) {
     auth(where: { username: { _eq: $_eq }, password: { _eq: $_eq1 }, level: {_eq: $_eq2 } }) {
@@ -94,7 +96,7 @@ function Login() {
 
     if (loading) {
         return (
-            <h1>loading...</h1>
+            <LoadingSvg />
         )
     }
 

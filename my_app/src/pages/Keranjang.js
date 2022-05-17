@@ -2,19 +2,22 @@ import React, { useState, useEffect } from "react";
 
 import { gql, useQuery, useLazyQuery, useMutation } from '@apollo/client'
 import Navbar from "../component/Navbar";
+import { Icon } from 'react-icons-kit'
+import { trash2 } from 'react-icons-kit/feather/trash2'
 import { user } from "react-icons-kit/typicons/user";
+import TotalHarga from "../component/TotalHarga";
 
 const listTrip = gql`
 query MyQuery {
     keranjang {
         deskripsi
         gambar
-        harga
         id
         judul
         path
         jumlah
         auth_id
+        harga1
     }
 }
 `
@@ -22,6 +25,14 @@ query MyQuery {
 const InsertCheckout = gql`
 mutation MyMutation($object1: checkout_insert_input!) {
     insert_checkout_one(object: $object1) {
+        id
+    }
+}
+`
+
+const DeleteKeranjang = gql`
+mutation MyMutation($id: Int!) {
+    delete_keranjang_by_pk(id: $id) {
         id
     }
 }
@@ -37,10 +48,13 @@ query MyQuery {
 
 export default function Keranjang() {
     const listTripQuery = useQuery(listTrip)
+    const listKeranjang = useQuery(listTrip)
     const authQuery = useQuery(authData)
+    const authQueryDetail = useQuery(authData)
     const [checked, setChecked] = useState(false)
     const [keranjangScroll, setKeranjangScrol] = useState(false)
     const [insertCheckout, { loading: loadingInsert }] = useMutation(InsertCheckout, { refetchQueries: [listTrip] })
+    const [deleteKeranjang, { loading: loadingDelete }] = useMutation(DeleteKeranjang, { refetchQueries: [listTrip] })
 
     const changeBackground = () => {
         if (window.scrollY >= 1) {
@@ -57,6 +71,14 @@ export default function Keranjang() {
 
     if (listTripQuery.loading || authQuery.loading) {
         return <h1>loading...</h1>
+    }
+
+    const onDeleteKeranjang = (idx) => {
+        deleteKeranjang({
+            variables: {
+                id: idx,
+            }
+        })
     }
 
     const checkedKeranjang = (value) => {
@@ -98,23 +120,44 @@ export default function Keranjang() {
                                         <div id="card" className=''>
                                             <div className=''>
                                                 {/* <input class="checkboxx" className="" onClick={() => checkedKeranjang(list)} checked={checked ? 'checked' : ''} type='checkbox' /> */}
-                                                <img className="" style={{ height: '150px', width: '150px' }} src={list.gambar} />
+                                                <img className="" style={{ height: '150px', width: '190px' }} src={list.gambar} />
                                             </div>
                                             <div className=''>
                                                 <h4>{list.judul}</h4>
-                                                <h5>{list.harga}</h5>
+                                                <h5>Rp. {list.harga1}</h5>
                                                 <h6>Jumlah : {list.jumlah}</h6>
                                             </div>
+                                            <button onClick={() => onDeleteKeranjang(list.id)}><Icon icon={trash2} /></button>
                                         </div>
                                     </div>
                                 )
                             }
                         })}
                     </div>
-                    <div id="detail" >
+                    <div id="detail" className="mt-3 mb-2" >
+                        <h4 className="text-center mb-3">Hasil</h4>
                         <div className={keranjangScroll ? 'keranjang active' : 'keranjang'}>
-                            <h1>detail</h1>
+                            {listKeranjang.data?.keranjang.map((list) => {
+                                const user = authQueryDetail.data?.auth.find(v => v.username === localStorage.getItem('username'))
+                                if (list.auth_id === user.id) {
+                                    return (
+                                        <div>
+                                            <div className="row">
+                                                <div className="col-2">
+                                                    <img src={list.gambar} style={{ height: '50px', width: '50px' }} />
+                                                </div>
+                                                <div className="col">
+                                                    <div className="ms-2">{list.judul}</div>
+                                                    <div className="text-end">{list.harga1}</div>
+                                                </div>
+                                            </div>
+                                            <div id="garis" className="mt-2 mb-2"></div>
+                                        </div>
+                                    )
+                                }
+                            })}
                         </div>
+                        <TotalHarga />
                     </div>
                 </div>
             </div>

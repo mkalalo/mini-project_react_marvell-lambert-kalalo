@@ -11,7 +11,7 @@ query MyQuery {
     trip {
         deskripsi
         gambar
-        harga
+        harga1
         id
         judul
         path

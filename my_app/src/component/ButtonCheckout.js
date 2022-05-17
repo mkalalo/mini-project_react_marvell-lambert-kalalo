@@ -40,7 +40,7 @@ export default function ButtonCheckout({listCheckout, data, resetData}) {
             variables: {
                 object: {
                     judul: v.judul,
-                    harga: v.harga,
+                    harga1: v.harga1,
                     path: v.path,
                     deskripsi: v.deskripsi,
                     gambar: v.gambar,

@@ -11,7 +11,7 @@ query MyQuery {
         deskripsi
         email
         gambar
-        harga
+        harga1
         id
         judul
         jumlah
@@ -51,12 +51,12 @@ export default function Transaksi() {
                         if (list.auth_id === user.id) {
                             return (
                                 <div id="card" className="row mb-3">
-                                    <div className="col">
+                                    <div className="col-2">
                                         <img src={list.gambar} style={{ width: '150px', height: '150px' }} />
                                     </div>
                                     <div className="col-10">
                                         <h4>{list.judul}</h4>
-                                        <h5>{list.harga}</h5>
+                                        <h5>{list.harga1}</h5>
                                     </div>
                                 </div>
                             )

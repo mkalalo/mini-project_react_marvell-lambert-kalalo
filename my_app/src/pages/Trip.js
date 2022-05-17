@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import './style.css'
 
+import swal from 'sweetalert';
+
 import TripHero from '../img/src/tripHero.jpg'
 
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
@@ -15,10 +17,10 @@ query MyQuery {
     trip {
         deskripsi
         gambar
-        harga
         id
         judul
         path
+        harga1
     }
 }
 `
@@ -47,7 +49,7 @@ function Trip() {
                                             <div className="detail">
                                                 <div className="text">
                                                     <h3>{list.judul}</h3>
-                                                    <h5>Rp. {list.harga}</h5>
+                                                    <h5>Rp. {list.harga1}</h5>
                                                 </div>
                                                 <div className="button row">
                                                     <div id="buttonn" className="col row">
