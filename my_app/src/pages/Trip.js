@@ -49,7 +49,10 @@ function Trip() {
                                             <div className="detail">
                                                 <div className="text">
                                                     <h3>{list.judul}</h3>
-                                                    <h5>Rp. {list.harga1}</h5>
+                                                    <h5>{list.harga1.toLocaleString("id-ID", {
+                                                        style: 'currency',
+                                                        currency: 'IDR'
+                                                    })}</h5>
                                                 </div>
                                                 <div className="button row">
                                                     <div id="buttonn" className="col row">

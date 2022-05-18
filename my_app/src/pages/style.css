@@ -657,6 +657,12 @@
     letter-spacing: 1px;
     padding: 5px;
     width: 100%;
+    border: none;
+}
+
+#order #box-2 input[type="text"]:focus {
+    border: none;
+    outline: none;
 }
 
 /* invoice */

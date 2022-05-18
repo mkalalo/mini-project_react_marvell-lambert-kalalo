@@ -47,7 +47,8 @@ function Navbar() {
         localStorage.removeItem('password')
         localStorage.removeItem('trip')
         cookies.remove('auth')
-        window.location.reload();
+        window.location.href='/';
+
     }
 
     const handleClick = () => {
@@ -63,7 +64,7 @@ function Navbar() {
                         <Link to='/home'><li>Home</li></Link>
                         <Link to='/trip'><li>Trip</li></Link>
                         <Link to='/about'><li>About</li></Link>
-                        <Link to='/contact'><li>Contact</li></Link>
+                        {/* <Link to='/contact'><li>Contact</li></Link> */}
                         <Link to='/keranjang'><Icon icon={ic_shopping_cart} /></Link>
                         {isLoggedin ? (
                             <span id="profile">

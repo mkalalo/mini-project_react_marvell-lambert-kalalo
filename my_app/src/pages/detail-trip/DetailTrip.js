@@ -76,7 +76,7 @@ function DetailTrip() {
             [name]: value
         })
     }
-    
+
     const resetData = () => {
         setData(baseData)
     }
@@ -106,40 +106,50 @@ function DetailTrip() {
             <Navbar />
             <div className="detailPages">
                 {listTripQuery.data?.trip.filter(list => list.judul === judul).map((list) => (
-                    <div className="container-fluid row">
+                    <div id="detailPages-content" className="container-fluid row">
                         <div className="col">
                             <img style={{ height: '400px', width: '100%' }} src={list.gambar} />
                         </div>
                         <div className="col align-items-center d-flex row">
                             <div>
                                 <h1>{list.judul}</h1>
-                                <p>{list.deskripsi}</p>
-                                <h5>{list.harga1}</h5>
+                                <p id='garis'>{list.deskripsi}</p>
+                                <h5>{list.harga1.toLocaleString("id-ID", {
+                                    style: 'currency',
+                                    currency: 'IDR'
+                                })}</h5>
                                 <div>
                                     <Link to='/trip/order'>
                                         <ButtonOrder listOrder={list} />
                                     </Link>
-                                    <Button listKeranjang={list} listTrip={listTrip} />
+                                    <div id="button-cart">
+                                        <Button listKeranjang={list} listTrip={listTrip} />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 ))}
-                <div className="container-fluid row justify-content-center">
+                <div id="comment" className="container-fluid row justify-content-center mt-5">
                     <div className="col-6">
                         <h5 className="text-center">Bagaimana Tanggapan Anda</h5>
-                        <div className="row justify-content-center">
-                            <input type='text' name="commentTrip" value={data.commentTrip} onChange={onChangeComment} />
-                            <button onClick={onSubmitCommnet}>Submit</button>
+                        <div className="row justify-content-center mt-4">
+                            <input className="col-10" type='text' name="commentTrip" value={data.commentTrip} onChange={onChangeComment} />
+                            <button className="col mt-0" onClick={onSubmitCommnet}>Submit</button>
                         </div>
                         {listCommentQuery.data?.comment.map((list) => {
                             const listComment = listTripQuery.data?.trip.find(list => list.judul === judul)
                             if (list.trip_id === listComment.id) {
                                 return (
-                                    <div>
-                                        <Icon icon={user} />
-                                        <h6>{list.name}</h6>
-                                        <p>{list.comment}</p>
+                                    <div id="cards" className="mt-3">
+                                        <div id="profile" className="row col-12">
+                                            <div className="col-1 me-2">
+                                                <Icon icon={user} />
+                                            </div>
+                                            <h6 className="col row align-items-center">{list.name}</h6>
+                                        </div>
+                                        <p className="mt-1">{list.comment}</p>
+                                        <div id="garis" className="row col-12"></div>
                                     </div>
                                 )
                             }

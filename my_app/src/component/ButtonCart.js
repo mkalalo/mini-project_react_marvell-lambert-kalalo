@@ -36,7 +36,8 @@ export default function Button({ listKeranjang, listTrip }) {
                     deskripsi: value.deskripsi,
                     gambar: value.gambar,
                     jumlah: 1,
-                    auth_id: user.id
+                    auth_id: user.id,
+                    jumlah_harga: value.harga1
                 }
             }
         })

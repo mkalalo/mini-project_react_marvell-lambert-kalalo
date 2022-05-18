@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../component/Navbar";
 
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
+import LoadingSvg from "../component/LoadingSvg";
 
 const listOrder = gql`
 query MyQuery {
@@ -35,7 +36,7 @@ export default function Transaksi() {
     const listOrderQuery = useQuery(listOrder)
 
     if  (authQuery.loading || listOrderQuery.loading) {
-        return <h1>Loading...</h1>
+        return <LoadingSvg />
     }
 
     return (
@@ -56,7 +57,10 @@ export default function Transaksi() {
                                     </div>
                                     <div className="col-10">
                                         <h4>{list.judul}</h4>
-                                        <h5>{list.harga1}</h5>
+                                        <h5>{list.harga1.toLocaleString("id-ID", {
+                                            style: 'currency',
+                                            currency: 'IDR'
+                                        })}</h5>
                                     </div>
                                 </div>
                             )

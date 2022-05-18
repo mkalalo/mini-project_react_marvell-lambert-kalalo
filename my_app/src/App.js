@@ -21,7 +21,6 @@ import PrivateRouteDashboard from './PrivateRouteDashboard';
 import Order from './pages/Order';
 import InVoice from './pages/inVoice';
 import Transaksi from './pages/Transaksi';
-import LoadingSvg from './component/LoadingSvg';
 
 function App() {
   return (
@@ -41,7 +40,6 @@ function App() {
                 <Route exact path='/trip/order' element={<Order />} />
                 <Route exact path='/transaksi' element={<Transaksi /> } />
                 <Route exact path='/transaksi/invoice' element={<InVoice />} />
-                <Route exact path='/loading' element={<LoadingSvg /> } />
                 <>
                   <Route exact path='/trip/:judul' element={<DetailTrip />} />
                 </>

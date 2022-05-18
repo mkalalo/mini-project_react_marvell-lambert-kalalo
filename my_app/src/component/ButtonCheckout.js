@@ -1,5 +1,6 @@
 import React from "react";
 import { gql, useQuery, useLazyQuery, useMutation } from '@apollo/client';
+import LoadingSvg from "./LoadingSvg";
 
 const listTrip = gql`
 query MyQuery {
@@ -55,6 +56,10 @@ export default function ButtonCheckout({listCheckout, data, resetData}) {
         })
         resetData()
         console.log(v)
+    }
+
+    if(loadingInsert) {
+        return <LoadingSvg />
     }
 
     return (

@@ -5,7 +5,10 @@ import Navbar from "../component/Navbar";
 import { Icon } from 'react-icons-kit'
 import { trash2 } from 'react-icons-kit/feather/trash2'
 import { user } from "react-icons-kit/typicons/user";
+import { plus } from 'react-icons-kit/typicons/plus'
+import { minus } from 'react-icons-kit/typicons/minus'
 import TotalHarga from "../component/TotalHarga";
+import LoadingSvg from "../component/LoadingSvg";
 
 const listTrip = gql`
 query MyQuery {
@@ -18,6 +21,7 @@ query MyQuery {
         jumlah
         auth_id
         harga1
+        jumlah_harga
     }
 }
 `
@@ -38,6 +42,20 @@ mutation MyMutation($id: Int!) {
 }
 `
 
+const UpdateKeranjangPlus = gql`
+mutation MyMutation($jumlah: numeric, $id: Int!) {
+    update_keranjang_by_pk(pk_columns: {id: $id}, _set: {jumlah: $jumlah}) {
+        id
+    }
+}`
+
+const UpdateKeranjangMinus = gql`
+mutation MyMutation($jumlah: numeric, $id: Int!) {
+    update_keranjang_by_pk(pk_columns: {id: $id}, _set: {jumlah: $jumlah}) {
+        id
+    }
+}`
+
 const authData = gql` 
 query MyQuery {
     auth {
@@ -49,12 +67,17 @@ query MyQuery {
 export default function Keranjang() {
     const listTripQuery = useQuery(listTrip)
     const listKeranjang = useQuery(listTrip)
+
+    const listKeranjangIncrement = useQuery(listTrip)
+
     const authQuery = useQuery(authData)
     const authQueryDetail = useQuery(authData)
     const [checked, setChecked] = useState(false)
     const [keranjangScroll, setKeranjangScrol] = useState(false)
     const [insertCheckout, { loading: loadingInsert }] = useMutation(InsertCheckout, { refetchQueries: [listTrip] })
     const [deleteKeranjang, { loading: loadingDelete }] = useMutation(DeleteKeranjang, { refetchQueries: [listTrip] })
+    const [updateKeranjangPlus, { loading: loadingUpdateKeranjangPlus }] = useMutation(UpdateKeranjangPlus, { refetchQueries: [listTrip] })
+    const [updateKeranjangMinus, { loading: loadingUpdateKeranjangMinus }] = useMutation(UpdateKeranjangMinus, { refetchQueries: [listTrip] })
 
     const changeBackground = () => {
         if (window.scrollY >= 1) {
@@ -70,13 +93,33 @@ export default function Keranjang() {
     }, [])
 
     if (listTripQuery.loading || authQuery.loading) {
-        return <h1>loading...</h1>
+        return <LoadingSvg />
     }
 
     const onDeleteKeranjang = (idx) => {
         deleteKeranjang({
             variables: {
                 id: idx,
+            }
+        })
+    }
+
+    const onClickPlus = (idx) => {
+        const item = listKeranjangIncrement.data?.keranjang.find(v => v.id === idx)
+        updateKeranjangPlus({
+            variables: {
+                id: idx,
+                jumlah: item.jumlah + 1,
+            }
+        })
+    }
+
+    const onClickMinus = (idx) => {
+        const item = listKeranjangIncrement.data?.keranjang.find(v => v.id === idx)
+        updateKeranjangMinus({
+            variables: {
+                id: idx,
+                jumlah: item.jumlah - 1,
             }
         })
     }
@@ -94,6 +137,7 @@ export default function Keranjang() {
                         jumlah: value.jumlah,
                         deskripsi: value.deskripsi,
                         path: value.path,
+
                     }
                 }
             })
@@ -115,6 +159,7 @@ export default function Keranjang() {
                         {listTripQuery.data?.keranjang.map((list) => {
                             const user = authQuery.data?.auth.find(v => v.username === localStorage.getItem('username'))
                             if (list.auth_id === user.id) {
+                                const total = list.jumlah * list.jumlah_harga
                                 return (
                                     <div id="box" className=''>
                                         <div id="card" className=''>
@@ -124,8 +169,15 @@ export default function Keranjang() {
                                             </div>
                                             <div className=''>
                                                 <h4>{list.judul}</h4>
-                                                <h5>Rp. {list.harga1}</h5>
-                                                <h6>Jumlah : {list.jumlah}</h6>
+                                                <h5>{list.harga1.toLocaleString("id-ID", {
+                                                    style: 'currency',
+                                                    currency: 'IDR'
+                                                })}</h5>
+                                                <h5>{total.toLocaleString("id-ID", {
+                                                    style: 'currency',
+                                                    currency: 'IDR'
+                                                })}</h5>
+                                                <div><span onClick={() => onClickPlus(list.id)}><Icon icon={plus} /></span> {list.jumlah} <span onClick={() => onClickMinus(list.id)}><Icon icon={minus} /></span></div>
                                             </div>
                                             <button onClick={() => onDeleteKeranjang(list.id)}><Icon icon={trash2} /></button>
                                         </div>
@@ -140,15 +192,22 @@ export default function Keranjang() {
                             {listKeranjang.data?.keranjang.map((list) => {
                                 const user = authQueryDetail.data?.auth.find(v => v.username === localStorage.getItem('username'))
                                 if (list.auth_id === user.id) {
+                                    const total = list.jumlah * list.jumlah_harga
                                     return (
                                         <div>
                                             <div className="row">
-                                                <div className="col-2">
-                                                    <img src={list.gambar} style={{ height: '50px', width: '50px' }} />
+                                                <div className="col-3">
+                                                    <img src={list.gambar} style={{ height: '70px', width: '70px' }} />
                                                 </div>
                                                 <div className="col">
-                                                    <div className="ms-2">{list.judul}</div>
-                                                    <div className="text-end">{list.harga1}</div>
+                                                    <div>
+                                                        <div className="ms-1">{list.judul}</div>
+                                                        <div className="ms-1">{list.jumlah}</div>
+                                                    </div>
+                                                    <div className="text-end">{total.toLocaleString("id-ID", {
+                                                        style: 'currency',
+                                                        currency: 'IDR'
+                                                    })}</div>
                                                 </div>
                                             </div>
                                             <div id="garis" className="mt-2 mb-2"></div>

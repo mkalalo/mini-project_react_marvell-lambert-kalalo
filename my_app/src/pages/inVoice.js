@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
 import './style.css'
 
 import { user } from 'react-icons-kit/typicons/user'
 import { Icon } from 'react-icons-kit'
+import LoadingSvg from '../component/LoadingSvg';
 
 const listOrder = gql`
 query MyQuery {
@@ -27,18 +28,18 @@ query MyQuery {
 export default function InVoice() {
     const listOrderQuery = useQuery(listOrder)
 
-    if (listOrderQuery.loading) {
-        return <h1>Loading...</h1>
-    }
 
     const kembali = () => {
         localStorage.removeItem('trip')
     }
 
+    if (listOrderQuery.loading) {
+        return <LoadingSvg />
+    }
+
     return (
         <div id='invoice' className='col-8 container-fluid'>
             {listOrderQuery.data?.order.filter(list => list.judul === localStorage.getItem('trip')).map((list) => {
-
                 return (
                     <div>
                         <div className='row'>
@@ -75,7 +76,10 @@ export default function InVoice() {
                                     </div>
                                 </div>
                                 <div id='garis'></div>
-                                <div className='text-end'>Rp. {list.harga1}</div>
+                                <div className='text-end'>{list.harga1.toLocaleString("id-ID", {
+                                    style: 'currency',
+                                    currency: 'IDR'
+                                })}</div>
                             </div>
                         </div>
                         <div id='button' className='text-center mt-5'>

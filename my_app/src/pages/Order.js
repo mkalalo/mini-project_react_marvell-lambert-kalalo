@@ -6,6 +6,7 @@ import './style.css'
 
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
 import ButtonCheckout from "../component/ButtonCheckout";
+import LoadingSvg from "../component/LoadingSvg";
 
 const listTrip = gql`
 query MyQuery {
@@ -32,7 +33,7 @@ function Order() {
     const listTripQuery = useQuery(listTrip)
 
     if (listTripQuery.loading) {
-        return <h1>Loading...</h1>
+        return <LoadingSvg />
     }
 
     const onChangeCheckout = e => {
@@ -69,14 +70,17 @@ function Order() {
                                                     </div>
                                                     <div className="col ms-2 mt-1">
                                                         <h4>{list.judul}</h4>
-                                                        <h5>Rp. {list.harga1}</h5>
+                                                        <h5>{list.harga1.toLocaleString("id-ID", {
+                                                            style: 'currency',
+                                                            currency: 'IDR'
+                                                        })}</h5>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div id="box-2" className="col bg-dark text-white">
-                                        <h1 className="text-center py-4">Logo</h1>
+                                        <h3 className="text-center py-4">Payment Information</h3>
                                         <div id="content">
                                             <form>
                                                 <div id="form" className="px-5">

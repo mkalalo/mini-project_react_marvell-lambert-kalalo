@@ -47,6 +47,12 @@ function Footer() {
                         <div className="col">
                             <h5>Lainnya</h5>
                             <div id="list" className="row">
+                            <span>
+                                    <Link to='#'>About</Link>
+                                </span>
+                                <span className="mt-2">
+                                    <Link to='#'>Trip</Link>
+                                </span>
                             </div>
                         </div>
                     </div>
