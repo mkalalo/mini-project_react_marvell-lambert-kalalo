@@ -15,6 +15,7 @@ import { Icon } from 'react-icons-kit'
 const listTrip = gql`
 query MyQuery {
     trip {
+        id
         deskripsi
         gambar
         id

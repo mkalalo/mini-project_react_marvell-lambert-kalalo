@@ -15,6 +15,7 @@ import Footer from "../component/Footer";
 const listTrip = gql`
 query MyQuery {
     trip {
+        id
         deskripsi
         gambar
         id
